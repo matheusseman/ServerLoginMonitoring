@@ -1,0 +1,131 @@
+zabbix_export:
+  version: '6.0'
+  date: '2024-07-07T18:47:19Z'
+  groups:
+    - uuid: 0680437333b14a60935127e691c38bb7
+      name: Segurança
+  templates:
+    - uuid: d464ce95b7e5491eb85ef362d042d7a9
+      template: 'Linux Login Monitoring'
+      name: 'Linux Login Monitoring'
+      groups:
+        - name: Segurança
+      items:
+        - uuid: 0970127a802c499ba7a89620a92b433b
+          name: 'Log falhas de autenticação SSH'
+          type: ZABBIX_ACTIVE
+          key: 'log[{$LOGIN_MONITORING_LOG_SSH_DETAIL}]'
+          trends: '0'
+          value_type: LOG
+          description: 'Obtem os dados de falhas de autenticação gerados pelo script serverLoginMonitoring.sh, no formato: MM DD HH:MM:SS IP_ORIGEM > CONTA'
+          tags:
+            - tag: Aplicação
+              value: SSH
+            - tag: Tipo
+              value: Log
+        - uuid: c6072306fb4041ec90a4c31c13bd71a2
+          name: 'Log falhas de autenticação Zimbra'
+          type: ZABBIX_ACTIVE
+          key: 'log[{$LOGIN_MONITORING_LOG_ZIMBRA_DETAIL}]'
+          delay: 5m
+          trends: '0'
+          value_type: LOG
+          description: 'Obtem os dados de falhas de autenticação gerados pelo script serverLoginMonitoring.sh, no formato: MM DD HH:MM:SS IP_ORIGEM > CONTA'
+          tags:
+            - tag: Aplicação
+              value: Zimbra
+            - tag: Tipo
+              value: Log
+        - uuid: 9ee29e5590a54c6d8808b6dabb6c41ca
+          name: 'Falhas de autenticação SSH - Total'
+          type: ZABBIX_ACTIVE
+          key: 'log[{$LOGIN_MONITORING_LOG},"ssh"]'
+          trends: '0'
+          value_type: LOG
+          description: 'Total de tentativas mal-sucedidas de acesso SSH.'
+          preprocessing:
+            - type: REGEX
+              parameters:
+                - 'ssh: ([0-9]+|[0-9].+)'
+                - \1
+              error_handler: CUSTOM_VALUE
+              error_handler_params: 'Falha ao coletar'
+          tags:
+            - tag: Aplicação
+              value: SSH
+            - tag: Tipo
+              value: Login
+          triggers:
+            - uuid: 5d5a3b63236a49138b43452f9700492f
+              expression: |
+                change(/Linux Login Monitoring/log[{$LOGIN_MONITORING_LOG},"ssh"])=1 and
+                last(/Linux Login Monitoring/log[{$LOGIN_MONITORING_LOG},"ssh"])<>0
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'change(/Linux Login Monitoring/log[{$LOGIN_MONITORING_LOG},"ssh"])=0'
+              name: 'SSH: Falha de autenticação em {HOST.NAME}'
+              priority: HIGH
+              description: |
+                Alerta em casos de senha incorreta nas conexões SSH do servidor.
+                
+                Alerta fechado manualmente, devido a análise necessária após ativação.
+              manual_close: 'YES'
+              tags:
+                - tag: Aplicação
+                  value: SSH
+                - tag: Tipo
+                  value: Segurança
+        - uuid: 563e798dd324469986438fbd5bdb365a
+          name: 'Falhas de autenticação Zimbra - Total'
+          type: ZABBIX_ACTIVE
+          key: 'log[{$LOGIN_MONITORING_LOG},"zimbra"]'
+          delay: 5m
+          trends: '0'
+          value_type: LOG
+          description: 'Total de tentativas mal-sucedidas de acesso Zimbra.'
+          preprocessing:
+            - type: REGEX
+              parameters:
+                - 'zimbra: ([0-9]+|[0-9].+)'
+                - \1
+              error_handler: CUSTOM_VALUE
+              error_handler_params: 'Falha ao coletar'
+          tags:
+            - tag: Aplicação
+              value: Zimbra
+            - tag: Tipo
+              value: Login
+          triggers:
+            - uuid: 4af5f4409918486281615b4f22ff6eaf
+              expression: |
+                change(/Linux Login Monitoring/log[{$LOGIN_MONITORING_LOG},"zimbra"])=1 and
+                last(/Linux Login Monitoring/log[{$LOGIN_MONITORING_LOG},"zimbra"])<>0
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'change(/Linux Login Monitoring/log[{$LOGIN_MONITORING_LOG},"zimbra"])=0'
+              name: 'Zimbra: Falha de autenticação em {HOST.NAME}'
+              priority: HIGH
+              description: |
+                Alerta em casos de senha incorreta na aplicação Zimbra.
+                
+                Alerta fechado manualmente, devido a análise necessária após ativação.
+              manual_close: 'YES'
+              tags:
+                - tag: Aplicação
+                  value: Zimbra
+                - tag: Tipo
+                  value: Segurança
+      tags:
+        - tag: Tipo
+          value: Segurança
+      macros:
+        - macro: '{$LOGIN_MONITORING_LOG}'
+          value: /var/log/serverLoginMonitoring.log
+          description: 'Arquivo de log gerado pelo script login-monitoring.sh'
+        - macro: '{$LOGIN_MONITORING_LOG_SSH_DETAIL}'
+          value: /var/log/SSHAuth.log
+          description: 'Arquivo de log com as informações de falhas de autenticação SSH gerado pelo script serverLoginMonitoring.sh.'
+        - macro: '{$LOGIN_MONITORING_LOG_ZIMBRA_DETAIL}'
+          value: /var/log/zimbraAuth.log
+          description: 'Arquivo de log com as informações de falhas de autenticação Zimbra gerado pelo script serverLoginMonitoring.sh.'
+        - macro: '{$TEMPO_COLETA_LOG_LOGIN}'
+          value: 5m
+          description: 'Tempo aceito para coleta dos logs do SSH.'
