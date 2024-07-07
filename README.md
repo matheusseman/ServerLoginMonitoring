@@ -18,7 +18,7 @@ O script é compatível, em sua versão atual, com serviços SSH e Zimbra, permi
 ## 🔧 Configuração
 Para que o script tenha seu funcionamento correto, devem ser respeitados alguns critérios:
 - O script deve ser alocado no diretório `/usr/local/bin`.
-- Deve receber permissão de execução com `chmod a+x /usr/local/bin/serverLogonInfo.sh`.
+- Deve receber permissão de execução com `chmod a+x /usr/local/bin/serverLoginMonitoring.sh`.
 
 ## 🚩 Dependências
 O script depende dos seguintes pacotes:
