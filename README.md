@@ -65,6 +65,8 @@ O script oferece várias opções de argumento para facilitar seu uso:
     ./serverLoginMonitoring.sh --ssh bypass
     ```
 
-## Futuras Implementações
-Está prevista a integração dos dados de saída do script com a central de monitoramento Zabbix. Isso permitirá a visualização dessas informações em dashboards, além de gerar alertas automáticos para administradores. Essa funcionalidade será detalhada em futuros repositórios no GitHub, proporcionando uma camada adicional de segurança e monitoramento proativo.
+## Integração com Zabbix
+O script possuí integração com monitoramento Zabbix, podendo gerar alertas e widgets para exibição das informações de falha de autenticação.
+
+GITHUB: https://github.com/matheusseman/ZabbixLoginMonitoring
 
