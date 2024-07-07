@@ -1,7 +1,7 @@
 # serverLoginMonitoring.sh
 
 ## 📑 Descrição
-Este script foi desenvolvido para análise de falhas de autenticação em serviços. Inicialmente, foi criado para funcionar em sistemas da família Debian, sendo implementado, neste exemplo específico, em um servidor Ubuntu Server 22.04, com serviço de acesso remoto seguro (SSH) instalado.
+Este script foi desenvolvido para análise de falhas de autenticação em serviços. Inicialmente, foi criado para funcionar em sistemas das família Debian e RedHat, sendo implementado, neste exemplo específico, em um servidor Ubuntu Server 22.04, com serviço de acesso remoto seguro (SSH) instalado.
 
 ![example](https://github.com/matheusseman/ServerLoginMonitoring/assets/119596051/e0ebdbec-3f40-46a6-a45c-576b16b7650c)
 
