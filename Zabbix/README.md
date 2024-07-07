@@ -55,10 +55,9 @@ Desta maneira, basta aguardar a coleta dos dados do host (garanta que a execuç�
 Para visualizar detalhes das falhas de autenticação no dashboard Zabbix, execute os passos abaixo:
 - Na central Zabbix, acesse o dashboard ao qual deseja adicionar as informações.
 - No dashboard, adicione um widget do tipo 'Plain Text".
- - Selecione o item 'Log falhas de autenticação SSH' para visualizar dados de falha de autenticação SSH.
- - Selecione o item 'Log falhas de autenticação Zimbra' para visualizar dados de falha de autenticação Zimbra.
+ - Selecione o item `Log falhas de autenticação SSH` ou `Log falhas de autenticação Zimbra`, dependendo do seu interesse.
 
-![image](https://github.com/matheusseman/ServerLoginMonitoring/assets/119596051/d29a77c2-c9ca-44b5-8004-075e0fca8c4c)
+   ![image](https://github.com/matheusseman/ServerLoginMonitoring/assets/119596051/d29a77c2-c9ca-44b5-8004-075e0fca8c4c)
 
 
 
