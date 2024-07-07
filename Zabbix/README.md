@@ -21,7 +21,7 @@ Antes de iniciar os procedimentos, garanta que já executou a configuração do 
 Para realizar a integração do script com a central Zabbix, siga os passos abaixo:
 - Na central Zabbix, execute a importação do template `linuxLoginMonitoring.yaml`.
 - Na central Zabbix, adicione o(s) host(s) no Template `Linux Login Monitoring`.
-- No(s) servidor(es) Linux, adicione as seguintes linhas no crontab do usuário root (faça as modificações necessárias):
+- No(s) servidor(es) Linux, adicione as seguintes linhas no crontab do usuário root (Adeque ao seu cenário):
   - SSH
     
       ```bash
@@ -33,7 +33,7 @@ Para realizar a integração do script com a central Zabbix, siga os passos abai
   - Zimbra
     
       ```bash
-        # Script para monitoramento de tentativas falhas de login SSH
+        # Script para monitoramento de tentativas falhas de login Zimbra
         # Á cada 5 minutos
         # Todos os dias
         */5 *   * * *   /usr/local/bin/login-monitoring.sh --zimbra bypass
@@ -48,14 +48,13 @@ Os alertas serão configurados automaticamente em todos os hosts que forem adici
 
 ![image](https://github.com/matheusseman/ServerLoginMonitoring/assets/119596051/7a0a996f-6b47-44c2-98cc-340015247a9e)
 
-Desta maneira, basta aguardar a coleta dos dados do host (garanta que a execução do script foi devidamente configurada no servidor Linux).
-
+Desta maneira, basta aguardar a coleta dos dados do host (garanta que a execução do script foi devidamente configurada nos servidores Linux).
 
 ### 📈 Dashboards
 Para visualizar detalhes das falhas de autenticação no dashboard Zabbix, execute os passos abaixo:
 - Na central Zabbix, acesse o dashboard ao qual deseja adicionar as informações.
 - No dashboard, adicione um widget do tipo 'Plain Text".
- - Selecione o item `Log falhas de autenticação SSH` ou `Log falhas de autenticação Zimbra`, dependendo do seu interesse.
+ - Selecione o item `Log falhas de autenticação SSH` ou `Log falhas de autenticação Zimbra`, no servidor de seu interesse.
 
    ![image](https://github.com/matheusseman/ServerLoginMonitoring/assets/119596051/d29a77c2-c9ca-44b5-8004-075e0fca8c4c)
 
