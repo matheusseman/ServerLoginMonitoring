@@ -20,7 +20,7 @@ declare -A CORES=(
 ) # Cores para melhor visualizaçao dos dados
 
 declare -A DEPENDENCIAS=(
-        [tee]="/usr/bin/tee"
+        [coreutils]="/usr/bin/tee"
         [less]="/usr/bin/less"
 ) # Dependencias necessárias para execução do script
 
