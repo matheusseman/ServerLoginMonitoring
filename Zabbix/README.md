@@ -28,7 +28,7 @@ Para realizar a integração do script com a central Zabbix, siga os passos abai
         # Script para monitoramento de tentativas falhas de login SSH
         # Á cada 2 minutos
         # Todos os dias
-        */2 *   * * *   /usr/local/bin/login-monitoring.sh --ssh bypass
+        */2 *   * * *   /usr/local/bin/serverLoginMonitoring.sh --ssh bypass
   
   - Zimbra
     
@@ -36,7 +36,7 @@ Para realizar a integração do script com a central Zabbix, siga os passos abai
         # Script para monitoramento de tentativas falhas de login Zimbra
         # Á cada 5 minutos
         # Todos os dias
-        */5 *   * * *   /usr/local/bin/login-monitoring.sh --zimbra bypass
+        */5 *   * * *   /usr/local/bin/serverLoginMonitoring.sh --zimbra bypass
 
 - No(s) servidor(es) Linux, reinicie os agentes de monitoramento Zabbix.
 
