@@ -3,7 +3,7 @@
 ## 📑 Descrição
 Este script foi desenvolvido para análise e tratamento de falhas de autenticação em serviços. Inicialmente, foi criado para funcionar em sistemas das família Debian e RedHat.
 
-![image](https://github.com/user-attachments/assets/24bd5853-1d63-4adc-a916-126abeedc78e)
+![image](https://github.com/user-attachments/assets/fdaae710-9db6-4459-a213-561a29ea94e7)
 
 O script é compatível, em sua versão atual, com serviços SSH e Zimbra, permitindo assim visualizar de forma facilitada as tentativas de acesso mal-sucedidas nestes serviços, no seguinte formato:
 - **SSH:** `Mês Dia Horário: Origem > Usuário`
